@@ -95,7 +95,7 @@ export class Client {
         let type: ResponseType;
 
         if (response.headers && response.headers['content-type'])
-            type = response.headers['content-type'].split('; ')[0] as ResponseType;
+            type = response.headers['content-type'].split(';')[0] as ResponseType;
 
         response.on('data', chunkData => data += chunkData);
 
