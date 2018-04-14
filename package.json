@@ -1,5 +1,5 @@
 {
-  "name": "@fu/httpclient",
+  "name": "@fosenu/httpclient",
   "version": "0.1.0",
   "description": "A HTTP-client written in typescript, using native node.js library",
   "main": "build/Client.js",
