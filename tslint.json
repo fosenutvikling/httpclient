@@ -1,0 +1,132 @@
+{
+    "rules": {
+        "class-name": true,
+        "comment-format": [
+            true,
+            "check-space",
+            "check-uppercase"
+        ],
+        "curly": false,
+        "eofline": false,
+        "forin": true,
+        "indent": [
+            true,
+            "spaces"
+        ],
+        "interface-name": [
+            false
+            /*,
+            "always-prefix"*/
+        ],
+        "jsdoc-format": true,
+        "label-position": true,
+        "label-undefined": true,
+        "linebreak-style": [
+            true,
+            "LF"
+        ],
+        "max-line-length": [
+            true,
+            160
+        ],
+        "member-access": [
+            true,
+            "check-accessor",
+            "check-constructor"
+        ],
+        "member-ordering": [
+            true,
+            {
+                "order": [
+                    "private-static-field",
+                    "public-static-field",
+                    "private-static-method",
+                    "public-static-method",
+                    "private-instance-field",
+                    "protected-instance-field",
+                    "public-instance-field",
+                    "private-constructor",
+                    "protected-constructor",
+                    "public-constructor",
+                    "private-instance-method",
+                    "protected-instance-method",
+                    "public-instance-method"
+                ]
+            }
+        ],
+        "new-parens": true,
+        "no-arg": true,
+        "no-bitwise": false,
+        "no-consecutive-blank-lines": true,
+        "no-console": [
+            true,
+            "debug",
+            "info",
+            "time",
+            "timeEnd",
+            "trace"
+        ],
+        "no-construct": true,
+        "no-debugger": true,
+        "no-default-export": true,
+        "no-duplicate-key": true,
+        "no-duplicate-variable": true,
+        "no-empty": false,
+        "no-eval": true,
+        "no-invalid-this": true,
+        "no-shadowed-variable": true,
+        "no-string-literal": false,
+        "no-switch-case-fall-through": true,
+        "no-trailing-whitespace": true,
+        "no-unreachable": true,
+        "no-unused-expression": true,
+        "one-variable-per-declaration": true,
+        "quotemark": [
+            true,
+            "single"
+        ],
+        "radix": true,
+        "semicolon": [
+            true,
+            "always"
+        ],
+        "switch-default": true,
+        "triple-equals": [
+            true,
+            "allow-null-check",
+            "allow-undefined-check"
+        ],
+        "typedef": [
+            true
+        ],
+        "typedef-whitespace": [
+            true,
+            {
+                "call-signature": "nospace",
+                "index-signature": "nospace",
+                "parameter": "nospace",
+                "property-declaration": "nospace",
+                "variable-declaration": "nospace"
+            }
+        ],
+        "variable-name": [
+            true,
+            "allow-leading-underscore",
+            "ban-keywords"
+        ],
+        "whitespace": [
+            true,
+            "check-branch",
+            "check-decl",
+            "check-operator",
+            "check-separator",
+            "check-type"
+        ]
+    },
+    "linterOptions": {
+        "exclude": [
+            "test/**/*.ts",
+            "build/"
+        ]
+    }
+}
