@@ -1,9 +1,8 @@
 import 'mocha';
 import { Client, Protocol } from '../src/Client';
-import { expect, should, use, spy } from 'chai';
+import { expect, use, spy } from 'chai';
 import * as spies from 'chai-spies';
 import * as http from 'http';
-import { isNullOrUndefined } from 'util';
 var ServerMock = require('mock-http-server');
 
 use(spies);
@@ -37,7 +36,7 @@ describe('Client', () => {
         reply: {
             status: 200,
             headers: { 'content-type': 'application/json' },
-            body: req => {
+            body: (req: http.IncomingMessage) => {
                 return '{\"hello:world\",123[]}';
             }
         }
@@ -49,7 +48,7 @@ describe('Client', () => {
         reply: {
             status: 200,
             headers: { 'content-type': 'application/json; charset=utf-8' },
-            body: req => {
+            body: (req: http.IncomingMessage) => {
                 return JSON.stringify({ method: req.method });
             }
         }
@@ -61,7 +60,7 @@ describe('Client', () => {
         reply: {
             status: 200,
             headers: { 'content-type': 'application/xml' },
-            body: req => {
+            body: (req: http.IncomingMessage) => {
                 return '<xml></xml>';
             }
         }
@@ -73,7 +72,7 @@ describe('Client', () => {
         reply: {
           status: 200,
           headers: { "content-type": "application/json" },
-          body: (req: http.IncomingMessage, reply) => {
+          body: (req: http.IncomingMessage, reply:any) => {
             let data = "";
             req.on("data", chunk => {
               data += chunk;
@@ -92,13 +91,12 @@ describe('Client', () => {
       });
 
     before(done => {
-        console.log('before');
         server.start(done);
     });
 
     after(done => {
-        console.log('after');
         server.stop(done);
+        process.exit(0);
     });
 
     it('should use default options', () => {
@@ -191,6 +189,7 @@ describe('Client', () => {
         const deleteResponse = await client.delete('/method');
         const postResponseData = await client.post('/method', { hello: 'world' });
 
+        expect(getResponse).to.deep.equal({ method: 'GET' });
         expect(putResponse).to.deep.equal({ method: 'PUT' });
         expect(postResponse).to.deep.equal({ method: 'POST' });
         expect(deleteResponse).to.deep.equal({ method: 'DELETE' });
@@ -199,7 +198,7 @@ describe('Client', () => {
     });
 
     it('should trigger default error function on request', async () => {
-        console.error = spy((...any) => {
+        console.error = spy(() => {
 
         });
 
