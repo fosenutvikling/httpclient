@@ -1,4 +1,4 @@
-# httpclient
+# @fu/httpclient
 
 [![Build Status](https://travis-ci.org/fosenutvikling/httpclient.svg?branch=master)](https://travis-ci.org/fosenutvikling/httpclient)
 
