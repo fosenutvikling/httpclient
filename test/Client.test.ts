@@ -67,6 +67,30 @@ describe('Client', () => {
         }
     });
 
+    server.on({
+        method: "*",
+        path: "/data",
+        reply: {
+          status: 200,
+          headers: { "content-type": "application/json" },
+          body: (req: http.IncomingMessage, reply) => {
+            let data = "";
+            req.on("data", chunk => {
+              data += chunk;
+            });
+    
+            req.on("end", () => {
+              reply(
+                JSON.stringify({
+                  body: data,
+                  ["content-length"]: req.headers["content-length"]
+                })
+              );
+            });
+          }
+        }
+      });
+
     before(done => {
         console.log('before');
         server.start(done);
@@ -213,4 +237,19 @@ describe('Client', () => {
         expect(console.error).to.have.been.called.exactly(3);
     });
 
+    it("should post data", async () => {
+        const client = new Client("localhost", { port: 9000 });
+    
+        const data = JSON.stringify({ hello: "world" });
+        const postResponse = (await client.post("/data", data)) as {
+          body: typeof data;
+          ["content-length"]: string;
+        };
+    
+        expect(postResponse.body).to.equal(data, "Not able to post data");
+        expect(postResponse["content-length"]).to.equal(
+          data.length.toString(),
+          "Content-length doesn't match"
+        );
+      });
 });
