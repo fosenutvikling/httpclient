@@ -124,7 +124,7 @@ export class Client {
 
     const preparedData = Client.prepareData(data);
     if (preparedData) {
-      headers['content-length'] = preparedData.length;
+      headers['content-length'] = Buffer.byteLength(preparedData);
     }
 
     const requestOptions: http.RequestOptions = {
@@ -151,8 +151,7 @@ export class Client {
         return reject(error);
       });
 
-      if (preparedData) request.write(preparedData);
-      request.end();
+      request.end(preparedData);
     });
   }
 
