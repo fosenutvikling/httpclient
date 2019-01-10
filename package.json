@@ -1,6 +1,6 @@
 {
   "name": "@fosenu/httpclient",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "A HTTP-client written in typescript, using native node.js library",
   "main": "build/Client.js",
   "types": "./build/Client.d.ts",
